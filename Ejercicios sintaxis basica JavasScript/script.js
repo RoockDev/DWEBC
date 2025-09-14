@@ -42,3 +42,74 @@ const textoNuevo2 = devuelveTextoAlreves2(texto);
 console.log(texto);
 console.log(textoNuevo);
 console.log(textoNuevo2);
+
+/*
+ Ej 3 Crea una función que genere 100 números aletorios entre 1 y 1000 que no se repitan.
+ Finalmente muestralos por pantalla
+ */
+
+ const generarNumerosAleatorios = () => {
+  let numerosAleatorios = [];
+
+  while(numerosAleatorios.length <= 100){
+    let numero = Math.floor(Math.random() * 1000) + 1;
+     if (!numerosAleatorios.includes(numero)){
+      numerosAleatorios.push(numero);
+     }
+  }
+
+  console.log(numerosAleatorios);
+ };
+
+ generarNumerosAleatorios();
+
+ /*
+  Ej 4 Escribe un programa que nos pida una frase, nos pida despues una letra y nos diga
+  cuantas veces aparece dicho letra en la frase. 
+  */
+
+  const vecesEnFrase = () => {
+
+    let frase = prompt("Introduce una frase: ");
+    let letra = prompt("Ahora introduce una letra");
+    let contador = 0;
+
+    for (let i = 0; i < frase.length - 1; i++) {
+      if (frase[i] === letra) {
+        contador++;
+        
+      }
+      
+    }
+
+    console.log(`la letra ${letra} aparece en la frase introducida ${contador} veces`);
+
+  };
+
+  //vecesEnFrase();
+
+/*
+  Ej 5 Escribe un programa que escriba por pantalla los divisores de un número dado
+ */
+
+  const dimeDivisores = (numeroDado) => {
+
+      let divisores = [];
+
+      for(let i = 1; i <= numeroDado; i++){
+        if(numeroDado % i == 0){
+          divisores.push(i);
+        }
+      }
+      
+      return divisores;
+
+  };
+
+  let numeroDivisor = 12;
+
+  let divisores = dimeDivisores(numeroDivisor);
+
+  console.log(divisores);
+
+
