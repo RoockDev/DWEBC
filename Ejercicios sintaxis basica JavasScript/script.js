@@ -48,68 +48,84 @@ console.log(textoNuevo2);
  Finalmente muestralos por pantalla
  */
 
- const generarNumerosAleatorios = () => {
+const generarNumerosAleatorios = () => {
   let numerosAleatorios = [];
 
-  while(numerosAleatorios.length <= 100){
+  while (numerosAleatorios.length <= 100) {
     let numero = Math.floor(Math.random() * 1000) + 1;
-     if (!numerosAleatorios.includes(numero)){
+    if (!numerosAleatorios.includes(numero)) {
       numerosAleatorios.push(numero);
-     }
+    }
   }
 
   console.log(numerosAleatorios);
- };
+};
 
- generarNumerosAleatorios();
+generarNumerosAleatorios();
 
- /*
+/*
   Ej 4 Escribe un programa que nos pida una frase, nos pida despues una letra y nos diga
   cuantas veces aparece dicho letra en la frase. 
   */
 
-  const vecesEnFrase = () => {
+const vecesEnFrase = () => {
+  let frase = prompt("Introduce una frase: ");
+  let letra = prompt("Ahora introduce una letra");
+  let contador = 0;
 
-    let frase = prompt("Introduce una frase: ");
-    let letra = prompt("Ahora introduce una letra");
-    let contador = 0;
-
-    for (let i = 0; i < frase.length - 1; i++) {
-      if (frase[i] === letra) {
-        contador++;
-        
-      }
-      
+  for (let i = 0; i < frase.length - 1; i++) {
+    if (frase[i] === letra) {
+      contador++;
     }
+  }
 
-    console.log(`la letra ${letra} aparece en la frase introducida ${contador} veces`);
+  console.log(
+    `la letra ${letra} aparece en la frase introducida ${contador} veces`
+  );
+};
 
-  };
-
-  //vecesEnFrase();
+//vecesEnFrase();
 
 /*
   Ej 5 Escribe un programa que escriba por pantalla los divisores de un número dado
  */
 
-  const dimeDivisores = (numeroDado) => {
+const dimeDivisores = (numeroDado) => {
+  let divisores = [];
 
-      let divisores = [];
+  for (let i = 1; i <= numeroDado; i++) {
+    if (numeroDado % i == 0) {
+      divisores.push(i);
+    }
+  }
 
-      for(let i = 1; i <= numeroDado; i++){
-        if(numeroDado % i == 0){
-          divisores.push(i);
-        }
+  return divisores;
+};
+
+let numeroDivisor = 12;
+
+let divisores = dimeDivisores(numeroDivisor);
+
+console.log(divisores);
+
+/**
+ * Juego del pum, escribe los numeros separados por coma y cada vez que enceuntre un numero terminado en 7
+ * o multiplo de 7 escribe pum y cambie de renglon
+ */
+
+const juegoDelPum = () => {
+  let output = "";
+  for (let i = 1; i <= 100; i++) {
+    if (i % 7 === 0 || i % 10 === 7) {
+      console.log(output + "PUM");
+      output = "";
+    } else {
+      if (output !== "") {
+        output += ",";
       }
-      
-      return divisores;
+      output += i;
+    }
+  }
+}
 
-  };
-
-  let numeroDivisor = 12;
-
-  let divisores = dimeDivisores(numeroDivisor);
-
-  console.log(divisores);
-
-
+juegoDelPum();
