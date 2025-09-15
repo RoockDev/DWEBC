@@ -126,6 +126,106 @@ const juegoDelPum = () => {
       output += i;
     }
   }
-}
+};
 
 juegoDelPum();
+
+/**
+ * Desarrolla una aplicación que permita calcular los salarios mensuales de los trabajadores de una empresa a partir de los siguientes datos:
+
+a. Número de horas trabajadas.
+b. Turno realizado: Mañanas (m), Tardes (t) o Noches (n).
+
+Para el cálculo del salario bruto se tendrá en cuenta que el turno de mañana se paga a 15 €/hora, el de tarde se paga a 17 €/hora y el turno de noche se paga 20 €/hora.
+
+Para el cálculo del salario neto se realizan determinados descuentos destinados al pago de impuestos de la siguiente forma:
+-Si el salario bruto es menor de 600 € el descuento es del 8%.
+-Si el salario bruto está entre 600 € y 1000 € el descuento es del 10%.
+-Si el salario bruto es mayor de 1000 € el descuento es del 12%.
+
+Se desea calcular el salario neto de cada trabajador. Para ello la aplicación irá pidiendo uno a uno los trabajadores hasta que el usuario indique lo contrario.
+
+Para cada trabajador se mostrará su salario neto.
+
+Antes de finalizar la aplicación mostrará el importe total de salarios abonados. El script se escribirá usando tantas funciones como sea posible con el fin de poder reutilizar la máxima cantidad de código en un futuro.
+ */
+
+const calcularSalarioTurno = (turno) => {
+  let salarioHora = 0;
+  if (turno === "m") {
+    salarioHora = 15;
+  } else if (turno === "t") {
+    salarioHora = 17;
+  } else if (turno === "n") {
+    salarioHora = 20;
+  }
+
+  return salarioHora;
+};
+
+const calcularMensualBruto = (salarioHora, horasTrabajadas) => {
+  return salarioHora * horasTrabajadas;
+};
+const calcularMensualneto = (salarioBruto) => {
+  let salarioNeto = 0;
+  if (salarioBruto < 600) {
+    salarioNeto = salarioBruto - (salarioBruto * 8) / 100;
+  } else if (salarioBruto >= 600 && salarioBruto <= 1000) {
+    salarioNeto = salarioBruto - (salarioBruto * 10) / 100;
+  } else if (salarioBruto > 1000) {
+    salarioNeto = salarioBruto - (salarioBruto * 12) / 100;
+  }
+
+  return salarioNeto;
+};
+
+let finalizar = false;
+let numeroTrabajador = 1;
+console.log("Calculadora de salario");
+
+while (!finalizar) {
+  console.log(`trabajador numero ${numeroTrabajador}`);
+  let turno = ""
+  do {
+    turno = prompt(
+      "introduce el turno en el que trabajas mañana[m],tarde[t],noche[n]"
+    ).toLowerCase();
+    if (turno !== "m" && turno !== "t" && turno !== "n") {
+      alert("introduce un turno correcto");
+    }
+  } while (turno !== "m" && turno !== "t" && turno !== "n");
+  let horas = true;
+  let horasMensuales = ""
+  while (horas) {
+    horasMensuales = parseFloat(prompt(
+      "introduce cuantas horas has trabajado este mes"
+    ));
+
+    
+    if (!isNaN(horasMensuales) && horasMensuales > 0) {
+      
+      horas = false;
+    } else {
+      alert("por favor introduce un numero de horas correctas");
+    }
+  }
+
+  let precioHora = calcularSalarioTurno(turno);
+  let salarioBruto = calcularMensualBruto(precioHora, horasMensuales);
+  let salarioNeto = calcularMensualneto(salarioBruto);
+
+  console.log(
+    `trabajador ${numeroTrabajador} tiene un salario mensual bruto de ${salarioBruto} y un salario neto de ${salarioNeto}`
+  );
+  let continuar = prompt(
+    "quieres seguir calculando el salario de otro trabajador si[s], salir[otro]"
+  ).toLowerCase();
+  if (continuar !== "s") {
+    finalizar = true;
+  }
+
+  numeroTrabajador++;
+  precioHora = 0;
+  salarioBruto = 0;
+  salarioNeto = 0;
+}
