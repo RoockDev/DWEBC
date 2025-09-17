@@ -74,7 +74,7 @@ const vecesEnFrase = () => {
   let contador = 0;
 
   for (let i = 0; i < frase.length - 1; i++) {
-    if (frase[i] === letra) {
+    if (frase[i] === letra[]) {
       contador++;
     }
   }
