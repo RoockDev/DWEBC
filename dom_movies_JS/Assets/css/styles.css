@@ -12,12 +12,6 @@ html, body {
     font-size: 25px;
 }
 
-.pelicula {
-    position: relative;
-    width: 200px;
-    left: 65px;
-}
-
 .elemento {
     position: relative;
     background-color: black;
@@ -41,4 +35,12 @@ html, body {
 
 #elementos-pelicula, #pelicula-caratula {
     height: 320px;
+}
+
+.ok {
+    border-color: green;
+}
+
+.fail {
+    border-color: red;
 }
